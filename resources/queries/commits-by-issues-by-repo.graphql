@@ -1,0 +1,25 @@
+query($owner: String!, $name: String!) {
+  repository(owner: $owner, name: $name) {
+    issues(first:1) {
+      totalCount, nodes {
+        title, closed, state, url, labels(first:10) {
+          nodes {color, name}
+        }, timelineItems(first:100) {
+          nodes {
+            ... on ClosedEvent
+              {
+                closer {__typename, ... on Commit {
+                  id, message, tree {...GetAllFilesRecursive }
+                }, ... on PullRequest {
+                  number, title, files(first:100) {
+                    totalCount, nodes {path}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

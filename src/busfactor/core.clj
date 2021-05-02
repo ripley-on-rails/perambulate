@@ -34,11 +34,16 @@
 
 (def fragments (str fragment-get-file ", " (->fragment-get-files-recursive 3)))
 
+;; queries
+
+(def commits-by-issues-by-repo (slurp "resources/queries/commits-by-issues-by-repo.graphql"))
+
 ;; manual testing
 
 (defn get-issues-by-repo [owner name]
   (graphql-query
-   (str "query($owner: String!, $name: String!){repository(owner: $owner, name: $name) {issues(first:1) {totalCount, nodes {title, closed, state, url, labels(first:10) {nodes {color, name} }, timelineItems(first:100) {nodes {... on ClosedEvent {closer {__typename, ... on Commit {id, message, tree {...GetAllFilesRecursive } }, ... on PullRequest{number, title, files(first:100) {totalCount, nodes {path} } } }}} } }}}}, "
+   (str commits-by-issues-by-repo
+        ", "
         fragments)
    {:owner owner
     :name name}))
