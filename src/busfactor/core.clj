@@ -7,10 +7,9 @@
 (def graphql-endpoint "https://api.github.com/graphql")
 
 (defn graphql-query [query]
-  (let [query-str (format "{ \"query\": \" %s \" }"
-                          (clojure.string/escape query
-                                                 {\" "\\\""}))
+  (let [query-str (json/write-str {:query query})
         headers {:authorization (str "bearer " personal-access-token)}]
+
     (update (http/post graphql-endpoint {:headers headers
                                          :body query-str})
             :body json/read-str)))
