@@ -6,10 +6,10 @@
 (def personal-access-token (slurp "personal_access_token.txt"))
 (def graphql-endpoint "https://api.github.com/graphql")
 
-(defn graphql-query [query]
-  (let [query-str (json/write-str {:query query})
+(defn graphql-query [query variables]
+  (let [query-str (json/write-str {:query query
+                                   :variables variables})
         headers {:authorization (str "bearer " personal-access-token)}]
-
     (update (http/post graphql-endpoint {:headers headers
                                          :body query-str})
             :body json/read-str)))
@@ -38,10 +38,10 @@
 
 (defn get-issues-by-repo [owner name]
   (graphql-query
-   (format
-    (str "query{repository(owner: \"%s\", name: \"%s\") {issues(first:1) {totalCount, nodes {title, closed, state, url, labels(first:10) {nodes {color, name} }, timelineItems(first:100) {nodes {... on ClosedEvent {closer {__typename, ... on Commit {id, message, tree {...GetAllFilesRecursive } }, ... on PullRequest{number, title, files(first:100) {totalCount, nodes {path} } } }}} } }}}}, "
-         fragments)
-    owner name)))
+   (str "query($owner: String!, $name: String!){repository(owner: $owner, name: $name) {issues(first:1) {totalCount, nodes {title, closed, state, url, labels(first:10) {nodes {color, name} }, timelineItems(first:100) {nodes {... on ClosedEvent {closer {__typename, ... on Commit {id, message, tree {...GetAllFilesRecursive } }, ... on PullRequest{number, title, files(first:100) {totalCount, nodes {path} } } }}} } }}}}, "
+        fragments)
+   {:owner owner
+    :name name}))
 
 (def r (get-issues-by-repo "futurice" "pepperoni-app-kit"))
 
