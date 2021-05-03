@@ -12,7 +12,7 @@
         headers {:authorization (str "bearer " personal-access-token)}]
     (update (http/post graphql-endpoint {:headers headers
                                          :body query-str})
-            :body json/read-str)))
+            :body #(json/read-json % true))))
 
 ;; fragments
 
