@@ -9,7 +9,7 @@ query($owner: String!, $name: String!) {
             ... on ClosedEvent  {
               closer {
                 __typename, ... on Commit {
-                  id, message, tree {...GetAllFilesRecursive }
+                  id, message, tree {...CommitTreeToFiles }
                 }, ... on PullRequest {
                   number, title, files(first:100) {
                     totalCount, nodes {path}

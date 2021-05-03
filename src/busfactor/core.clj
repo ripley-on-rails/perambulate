@@ -16,13 +16,13 @@
 
 ;; fragments
 
-(def fragment-get-file "fragment GetAllFile on TreeEntry {path, type}")
+(def fragment-get-file "fragment CommitTreeEntryToFile on TreeEntry {path, type}")
 
-(let [wrap "on Tree {entries {...GetAllFile%s}}"
+(let [wrap "on Tree {entries {...CommitTreeEntryToFile%s}}"
       recur-wrap ", object{... %s}"]
   (defn ->fragment-get-files-recursive
     ([depth]
-     (str "fragment GetAllFilesRecursive "
+     (str "fragment CommitTreeToFiles "
           (->fragment-get-files-recursive depth (format wrap ""))))
     ([depth s]
      (if (pos? depth)
