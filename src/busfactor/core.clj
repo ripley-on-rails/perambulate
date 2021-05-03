@@ -16,7 +16,7 @@
 
 ;; fragments
 
-(def fragment-get-file "fragment GetAllFile on TreeEntry {path, type }")
+(def fragment-get-file "fragment GetAllFile on TreeEntry {path, type}")
 
 (let [wrap "on Tree {entries {...GetAllFile%s}}"
       recur-wrap ", object{... %s}"]
