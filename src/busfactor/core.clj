@@ -36,8 +36,8 @@
                                             (format wrap)))
        s))))
 
-(defn fragments
-  ([depth] (fragments [depth nil]))
+(defn make-fragments
+  ([depth] (make-fragments [depth nil]))
   ([depth custom-tree-entry-fragment-name]
    (str (->fragment-get-file custom-tree-entry-fragment-name)
         ", "
@@ -92,7 +92,7 @@
        (str commits-by-issues-by-repo
             ", "
             (str "fragment CustomTreeEntryData on TreeEntry {mode}, "
-                 (fragments 5 "CustomTreeEntryData")))
+                 (make-fragments 5 "CustomTreeEntryData")))
        {:owner owner
         :name name})
       response->repo))
