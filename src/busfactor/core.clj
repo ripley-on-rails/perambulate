@@ -54,7 +54,9 @@
   ([tree f] (reduce (fn [files entry]
                       (case (:type entry)
                         "tree" (concat files (tree->files (:object entry) f))
-                        "blob" (conj files (f entry))))
+                        "blob" (conj files (f entry))
+                        _ files ;; ignore tags
+                        ))
                     [] (:entries tree))))
 
 (defn- parse-commit [commit]
