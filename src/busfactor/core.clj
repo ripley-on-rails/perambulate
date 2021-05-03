@@ -6,7 +6,7 @@
 (def personal-access-token (slurp "personal_access_token.txt"))
 (def graphql-endpoint "https://api.github.com/graphql")
 
-(defn graphql-query [query variables]
+(defn graphql-query [query variables personal-access-token]
   (let [query-str (json/write-str {:query query
                                    :variables variables})
         headers {:authorization (str "bearer " personal-access-token)}]
@@ -94,7 +94,8 @@
             (str "fragment CustomTreeEntryData on TreeEntry {mode}, "
                  (make-fragments 5 "CustomTreeEntryData")))
        {:owner owner
-        :name name})
+        :name name}
+       personal-access-token)
       response->repo))
 
 (def r (get-repo-with-issues-and-commits "futurice" "pepperoni-app-kit"))
