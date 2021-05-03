@@ -42,21 +42,49 @@
 
 (defn tree->files [tree]
   (reduce (fn [files entry]
-            (if (= "tree" (:type entry))
-              (concat files (tree->files (:object entry)))
-              (conj files (:path entry))))
+            (case (:type entry)
+              "tree" (concat files (tree->files (:object entry)))
+              "blob" (conj files (:path entry))))
           [] (:entries tree)))
+
+(defn- parse-commit [commit]
+  (-> (assoc commit :files (tree->files (:tree commit)))
+      (select-keys[:id :message :files])))
+
+(defn- ->commits-and-pull-requests [timelineItems]
+  (->> timelineItems
+       (map :closer)
+       (remove nil?)
+       (reduce (fn [result item]
+                 (let [type (:__typename item)
+                       [key resolver] (case type
+                                        "Commit" [:commits parse-commit]
+                                        "PullRequest" [:pull-requests identity])]
+                   (update result key #(conj % (resolver item)))))
+               {:commits []
+                :pull-requests []}))  )
+
+(defn- ->issue [issue]
+  (-> issue
+      (#(merge % (->commits-and-pull-requests (get-in % [:timelineItems :nodes]))))
+      (dissoc :timelineItems))  )
+
+(defn response->repo [response]
+  (-> response
+      (get-in [:body :data :repository])
+      (update :issues (fn [issues] (mapv ->issue (:nodes issues))))))
 
 ;; manual testing
 
-(defn get-issues-by-repo [owner name]
-  (graphql-query
-   (str commits-by-issues-by-repo
-        ", "
-        fragments)
-   {:owner owner
-    :name name}))
+(defn get-repo-with-issues-and-commits [owner name]
+  (-> (graphql-query
+       (str commits-by-issues-by-repo
+            ", "
+            fragments)
+       {:owner owner
+        :name name})
+      response->repo))
 
-(def r (get-issues-by-repo "futurice" "pepperoni-app-kit"))
+(def r (get-repo-with-issues-and-commits "futurice" "pepperoni-app-kit"))
 
-(pprint (:body r))
+(pprint r)
