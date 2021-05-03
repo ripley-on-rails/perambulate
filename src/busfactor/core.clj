@@ -16,7 +16,11 @@
 
 ;; fragments
 
-(def fragment-get-file "fragment CommitTreeEntryToFile on TreeEntry {path, type}")
+(defn- ->fragment-get-file [custom-fragment-name]
+  (format "fragment CommitTreeEntryToFile on TreeEntry {path, type%s}"
+          (if custom-fragment-name
+            (str "..." custom-fragment-name)
+            "")))
 
 (let [wrap "on Tree {entries {...CommitTreeEntryToFile%s}}"
       recur-wrap ", object{... %s}"]
@@ -32,7 +36,12 @@
                                             (format wrap)))
        s))))
 
-(def fragments (str fragment-get-file ", " (->fragment-get-files-recursive 3)))
+(defn fragments
+  ([depth] (fragments [depth nil]))
+  ([depth custom-tree-entry-fragment-name]
+   (str (->fragment-get-file custom-tree-entry-fragment-name)
+        ", "
+        (->fragment-get-files-recursive depth))))
 
 ;; queries
 
@@ -82,7 +91,8 @@
   (-> (graphql-query
        (str commits-by-issues-by-repo
             ", "
-            fragments)
+            (str "fragment CustomTreeEntryData on TreeEntry {mode}, "
+                 (fragments 5 "CustomTreeEntryData")))
        {:owner owner
         :name name})
       response->repo))
