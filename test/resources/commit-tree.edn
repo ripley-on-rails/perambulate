@@ -1,0 +1,273 @@
+{:entries
+ [{:path ".babelrc", :type "blob", :object {}}
+  {:path ".buckconfig", :type "blob", :object {}}
+  {:path ".eslintrc", :type "blob", :object {}}
+  {:path ".flowconfig", :type "blob", :object {}}
+  {:path ".gitignore", :type "blob", :object {}}
+  {:path ".istanbul.yml", :type "blob", :object {}}
+  {:path ".travis.yml", :type "blob", :object {}}
+  {:path ".watchmanconfig", :type "blob", :object {}}
+  {:path "LICENSE", :type "blob", :object {}}
+  {:path "README.md", :type "blob", :object {}}
+  {:path "android",
+   :type "tree",
+   :object
+   {:entries
+    [{:path "android/app",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "android/app/BUCK", :type "blob", :object {}}
+        {:path "android/app/app.iml", :type "blob", :object {}}
+        {:path "android/app/build.gradle", :type "blob", :object {}}
+        {:path "android/app/proguard-rules.pro",
+         :type "blob",
+         :object {}}
+        {:path "android/app/react.gradle", :type "blob", :object {}}
+        {:path "android/app/src",
+         :type "tree",
+         :object
+         {:entries [{:path "android/app/src/main", :type "tree"}]}}]}}
+     {:path "android/build.gradle", :type "blob", :object {}}
+     {:path "android/gradle.properties", :type "blob", :object {}}
+     {:path "android/gradle",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "android/gradle/wrapper",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "android/gradle/wrapper/gradle-wrapper.jar",
+            :type "blob"}
+           {:path "android/gradle/wrapper/gradle-wrapper.properties",
+            :type "blob"}]}}]}}
+     {:path "android/gradlew", :type "blob", :object {}}
+     {:path "android/gradlew.bat", :type "blob", :object {}}
+     {:path "android/settings.gradle", :type "blob", :object {}}]}}
+  {:path "bitrise",
+   :type "tree",
+   :object
+   {:entries
+    [{:path "bitrise/bitrise.ios.yml", :type "blob", :object {}}]}}
+  {:path "docs",
+   :type "tree",
+   :object
+   {:entries
+    [{:path "docs/ARCHITECTURE.md", :type "blob", :object {}}
+     {:path "docs/DEPLOYMENT.md", :type "blob", :object {}}
+     {:path "docs/SETUP.md", :type "blob", :object {}}
+     {:path "docs/TESTING.md", :type "blob", :object {}}
+     {:path "docs/pepperoni.png", :type "blob", :object {}}
+     {:path "docs/pepperoni.svg", :type "blob", :object {}}]}}
+  {:path "env.example.js", :type "blob", :object {}}
+  {:path "images",
+   :type "tree",
+   :object
+   {:entries
+    [{:path "images/pepperoni.png", :type "blob", :object {}}
+     {:path "images/pepperoni@2x.png", :type "blob", :object {}}
+     {:path "images/pepperoni@3x.png", :type "blob", :object {}}]}}
+  {:path "index.android.js", :type "blob", :object {}}
+  {:path "index.ios.js", :type "blob", :object {}}
+  {:path "ios",
+   :type "tree",
+   :object
+   {:entries
+    [{:path "ios/PepperoniAppTemplate.xcodeproj",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "ios/PepperoniAppTemplate.xcodeproj/project.pbxproj",
+         :type "blob",
+         :object {}}
+        {:path "ios/PepperoniAppTemplate.xcodeproj/xcshareddata",
+         :type "tree",
+         :object
+         {:entries
+          [{:path
+            "ios/PepperoniAppTemplate.xcodeproj/xcshareddata/xcschemes",
+            :type "tree"}]}}]}}
+     {:path "ios/PepperoniAppTemplate.xcworkspace",
+      :type "tree",
+      :object
+      {:entries
+       [{:path
+         "ios/PepperoniAppTemplate.xcworkspace/contents.xcworkspacedata",
+         :type "blob",
+         :object {}}]}}
+     {:path "ios/PepperoniAppTemplate",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "ios/PepperoniAppTemplate/AppDelegate.h",
+         :type "blob",
+         :object {}}
+        {:path "ios/PepperoniAppTemplate/AppDelegate.m",
+         :type "blob",
+         :object {}}
+        {:path "ios/PepperoniAppTemplate/Base.lproj",
+         :type "tree",
+         :object
+         {:entries
+          [{:path
+            "ios/PepperoniAppTemplate/Base.lproj/LaunchScreen.xib",
+            :type "blob"}]}}
+        {:path "ios/PepperoniAppTemplate/Images.xcassets",
+         :type "tree",
+         :object
+         {:entries
+          [{:path
+            "ios/PepperoniAppTemplate/Images.xcassets/AppIcon.appiconset",
+            :type "tree"}
+           {:path
+            "ios/PepperoniAppTemplate/Images.xcassets/Contents.json",
+            :type "blob"}]}}
+        {:path "ios/PepperoniAppTemplate/Info.plist",
+         :type "blob",
+         :object {}}
+        {:path "ios/PepperoniAppTemplate/main.m",
+         :type "blob",
+         :object {}}]}}
+     {:path "ios/PepperoniAppTemplateTests",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "ios/PepperoniAppTemplateTests/Info.plist",
+         :type "blob",
+         :object {}}
+        {:path
+         "ios/PepperoniAppTemplateTests/PepperoniAppTemplateTests.m",
+         :type "blob",
+         :object {}}]}}
+     {:path "ios/Podfile", :type "blob", :object {}}
+     {:path "ios/Podfile.lock", :type "blob", :object {}}]}}
+  {:path "package.json", :type "blob", :object {}}
+  {:path "src",
+   :type "tree",
+   :object
+   {:entries
+    [{:path "src/components",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "src/components/DeveloperMenu.android.js",
+         :type "blob",
+         :object {}}
+        {:path "src/components/DeveloperMenu.ios.js",
+         :type "blob",
+         :object {}}
+        {:path "src/components/DeveloperMenu.js",
+         :type "blob",
+         :object {}}
+        {:path "src/components/TabBar.js", :type "blob", :object {}}
+        {:path "src/components/TabBarButton.js",
+         :type "blob",
+         :object {}}
+        {:path "src/components/__specs__",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/components/__specs__/TabBar.spec.js",
+            :type "blob"}
+           {:path "src/components/__specs__/TabBarButton.spec.js",
+            :type "blob"}]}}]}}
+     {:path "src/modules",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "src/modules/AppRouter.js", :type "blob", :object {}}
+        {:path "src/modules/AppView.js", :type "blob", :object {}}
+        {:path "src/modules/AppViewContainer.js",
+         :type "blob",
+         :object {}}
+        {:path "src/modules/__specs__",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/modules/__specs__/AppView.spec.js",
+            :type "blob"}]}}
+        {:path "src/modules/auth",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/modules/auth/AuthState.js", :type "blob"}
+           {:path "src/modules/auth/__specs__", :type "tree"}]}}
+        {:path "src/modules/colors",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/modules/colors/ColorView.js", :type "blob"}
+           {:path "src/modules/colors/ColorViewContainer.js",
+            :type "blob"}]}}
+        {:path "src/modules/counter",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/modules/counter/CounterState.js", :type "blob"}
+           {:path "src/modules/counter/CounterView.js", :type "blob"}
+           {:path "src/modules/counter/CounterViewContainer.js",
+            :type "blob"}
+           {:path "src/modules/counter/__specs__", :type "tree"}]}}
+        {:path "src/modules/navigation",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/modules/navigation/NavigationState.js",
+            :type "blob"}
+           {:path "src/modules/navigation/NavigationView.js",
+            :type "blob"}
+           {:path "src/modules/navigation/NavigationViewContainer.js",
+            :type "blob"}]}}
+        {:path "src/modules/session",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/modules/session/SessionState.js",
+            :type "blob"}]}}]}}
+     {:path "src/redux",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "src/redux/middleware.js", :type "blob", :object {}}
+        {:path "src/redux/middleware",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/redux/middleware/loggerMiddleware.js",
+            :type "blob"}]}}
+        {:path "src/redux/reducer.js", :type "blob", :object {}}
+        {:path "src/redux/store.js", :type "blob", :object {}}]}}
+     {:path "src/services",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "src/services/auth0.js", :type "blob", :object {}}
+        {:path "src/services/randomNumberService.js",
+         :type "blob",
+         :object {}}]}}
+     {:path "src/utils",
+      :type "tree",
+      :object
+      {:entries
+       [{:path "src/utils/__specs__",
+         :type "tree",
+         :object
+         {:entries
+          [{:path "src/utils/__specs__/api.spec.js", :type "blob"}]}}
+        {:path "src/utils/api.js", :type "blob", :object {}}
+        {:path "src/utils/authentication.js", :type "blob", :object {}}
+        {:path "src/utils/configuration.js", :type "blob", :object {}}
+        {:path "src/utils/snapshot.js", :type "blob", :object {}}]}}]}}
+  {:path "support",
+   :type "tree",
+   :object
+   {:entries [{:path "support/rename.sh", :type "blob", :object {}}]}}
+  {:path "test",
+   :type "tree",
+   :object
+   {:entries
+    [{:path "test/assertions.js", :type "blob", :object {}}
+     {:path "test/mocha.opts", :type "blob", :object {}}
+     {:path "test/setup.js", :type "blob", :object {}}
+     {:path "test/state.js", :type "blob", :object {}}]}}]}

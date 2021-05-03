@@ -38,6 +38,15 @@
 
 (def commits-by-issues-by-repo (slurp "resources/queries/commits-by-issues-by-repo.graphql"))
 
+;; parsing
+
+(defn tree->files [tree]
+  (reduce (fn [files entry]
+            (if (= "tree" (:type entry))
+              (concat files (tree->files (:object entry)))
+              (conj files (:path entry))))
+          [] (:entries tree)))
+
 ;; manual testing
 
 (defn get-issues-by-repo [owner name]
