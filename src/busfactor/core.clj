@@ -69,10 +69,12 @@
       (#(merge % (->commits-and-pull-requests (get-in % [:timelineItems :nodes]))))
       (dissoc :timelineItems))  )
 
-(defn response->repo [response]
-  (-> response
-      (get-in [:body :data :repository])
-      (update :issues (fn [issues] (mapv ->issue (:nodes issues))))))
+(defn- response->repo [response]
+  (if-let [errors (get-in response [:body :errors])]
+    (throw (Exception. (str "Error Response: " errors)))
+    (-> response
+        (get-in [:body :data :repository])
+        (update :issues (fn [issues] (mapv ->issue (:nodes issues)))))))
 
 ;; manual testing
 
