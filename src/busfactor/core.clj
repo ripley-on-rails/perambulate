@@ -49,15 +49,16 @@
 
 ;; parsing
 
-(defn tree->files [tree]
-  (reduce (fn [files entry]
-            (case (:type entry)
-              "tree" (concat files (tree->files (:object entry)))
-              "blob" (conj files (:path entry))))
-          [] (:entries tree)))
+(defn tree->files
+  ([tree] (tree->files tree identity))
+  ([tree f] (reduce (fn [files entry]
+                      (case (:type entry)
+                        "tree" (concat files (tree->files (:object entry) f))
+                        "blob" (conj files (f entry))))
+                    [] (:entries tree))))
 
 (defn- parse-commit [commit]
-  (-> (assoc commit :files (tree->files (:tree commit)))
+  (-> (assoc commit :files (tree->files (:tree commit) :path))
       (select-keys[:id :message :files])))
 
 (defn- ->commits-and-pull-requests [timelineItems]
