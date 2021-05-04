@@ -1,6 +1,6 @@
-(ns busfactor.core-test
+(ns perambulate.core-test
   (:require [clojure.test :refer :all]
-            [busfactor.core :refer :all]))
+            [perambulate.core :refer :all]))
 
 (def slurp-edn (comp read-string slurp))
 

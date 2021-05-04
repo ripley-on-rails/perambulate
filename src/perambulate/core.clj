@@ -1,17 +1,17 @@
-(ns busfactor.core
-  (:require [clojure.edn :as edn]
-            [clojure.data.json :as json]
+(ns perambulate.core
+  (:require [clojure.data.json :as json]
             [clj-http.client :as http]))
 
 (def personal-access-token (slurp "personal_access_token.txt"))
 (def graphql-endpoint "https://api.github.com/graphql")
 
-(defn graphql-query [query variables personal-access-token]
+;; x
+(defn graphql-query [endpoint query variables personal-access-token]
   (let [query-str (json/write-str {:query query
                                    :variables variables})
         headers {:authorization (str "bearer " personal-access-token)}]
-    (update (http/post graphql-endpoint {:headers headers
-                                         :body query-str})
+    (update (http/post endpoint {:headers headers
+                                 :body query-str})
             :body #(json/read-json % true))))
 
 ;; fragments
@@ -92,6 +92,7 @@
 
 (defn get-repo-with-issues-and-commits [owner name]
   (-> (graphql-query
+       graphql-endpoint
        (str commits-by-issues-by-repo
             ", "
             (str "fragment CustomTreeEntryData on TreeEntry {mode}, "
